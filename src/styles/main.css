@@ -6,3 +6,9 @@ body,
   padding: 0;
 }
 
+.splitpanes__pane {
+  font-family: Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 5em;
+  height: 100%;
+}

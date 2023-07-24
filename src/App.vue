@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import TheFooter from './components/TheFooter.vue'
+import Playground from './components/Playground.vue'
 </script>
 
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700">
-    <RouterView />
-    <TheFooter />
-  </main>
+  <Playground />
 </template>

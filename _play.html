@@ -1,0 +1,36 @@
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+  html body #container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+<body>
+  <div id="container">iframe</div>
+  <style id="style"></style>
+</body>
+<script type="module">
+  const container = document.getElementById('container')
+  const style = document.getElementById('style')
+
+  window.addEventListener('message', ({ data }) => {
+    try {
+      const payload = JSON.parse(data)
+
+      if (payload.source !== 'playground')
+        return
+  
+      container.innerHTML = payload.html
+      style.innerHTML = payload.css
+    }
+    catch (e) {
+      console.error(e)
+    }
+  })
+</script>
