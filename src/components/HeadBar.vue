@@ -8,7 +8,7 @@
         San Playground
       </p>
       <p>
-        v 3.12
+        v 3.13
       </p>
     </div>
     <div flex-nowrap ml-auto font-700>
