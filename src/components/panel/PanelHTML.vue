@@ -11,7 +11,7 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
 </script>
 
 <template>
-  <Pane w-full relative :min-size="panelMinHeightPercent" :size="panelSizes[0]" bg-gray overflow-hidden>
+  <Pane w-full relative :min-size="panelMinHeightPercent" :size="panelSizes[0]" bg-light overflow-hidden b-1>
     <TitleBar title="html" @title-click="toggle(0)">
       <template #collapse>
         <div i-carbon-chevron-right c-blueGray :class="isCollapsed(0) ? '' : 'rotate-90'" />
