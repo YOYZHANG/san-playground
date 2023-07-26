@@ -20,7 +20,6 @@
     "@unocss/reset": "^0.53.0",
     "@vueuse/core": "^10.1.2",
     "codemirror": "^6.0.1",
-    "lang-javascript": "link:@types/@codemirror/lang-javascript",
     "pinia": "^2.1.3",
     "splitpanes": "^3.1.5",
     "vue": "^3.3.4",
