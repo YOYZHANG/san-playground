@@ -6,7 +6,7 @@ import Editor from '../components/Editor.vue'
 
 <template>
   <div>
-    <Splitpanes w-screen h-screen :horizontal="false" overflow-hidden flex>
+    <Splitpanes :horizontal="false" w-screen h-screen overflow-hidden flex>
       <Pane>
         <Preview />
       </Pane>

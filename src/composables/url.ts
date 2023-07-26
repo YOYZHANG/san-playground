@@ -8,6 +8,7 @@ export const inputHTML = ref(decodeURIComponent(urlParams.get('html') || '') || 
 export const css = ref(decodeURIComponent(urlParams.get('css') || '') || defaultCss)
 
 watchThrottled([inputHTML, css], () => {
+  console.log('inputHTML change')
   const url = new URL('/playground/', location.origin)
 
   url.searchParams.set('html', encodeURIComponent(inputHTML.value))

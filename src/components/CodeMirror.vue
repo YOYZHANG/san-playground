@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useVModel } from '@vueuse/core'
 import { useCodeMirror } from '../composables/codemirror'
 
 const props = defineProps<{
-  modelV: string
+  modelValue: string
   mode: string
   readonly?: boolean
 }>()
 
-const el = ref<HTMLElement>()
+const emit = defineEmits<{ (e: 'update:modelValue', payload: string): void }>()
 
-const input = computed(() => {
-  console.log('codemirror input change')
-  return props.modelV
-})
+const input = useVModel(props, 'modelValue', emit)
+
+const el = ref<HTMLElement>()
 
 onMounted(() => {
   useCodeMirror(input, el, {

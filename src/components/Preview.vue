@@ -19,11 +19,13 @@ watch([iframe, iframeData], send)
 </script>
 
 <template>
-  <div w-full h-full flex justify-center bg-white relative b-1>
+  <div w-full h-full relative b-1 flex-1>
     <div>
       <iframe
         v-show="init"
         ref="iframe"
+        w-full
+        h-screen
         src="/playground/_play.html"
         @load="send"
       />

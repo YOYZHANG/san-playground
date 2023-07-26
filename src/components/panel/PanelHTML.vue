@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Pane } from 'splitpanes'
+import { ref } from 'vue'
 import CodeMirror from '../CodeMirror.vue'
 import TitleBar from '../TitleBar.vue'
 import { inputHTML } from '../../composables/url'
@@ -8,6 +9,8 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
 // const index = defineProps({
 //   index: Number,
 // })
+
+const modelV = ref(inputHTML)
 </script>
 
 <template>
@@ -18,7 +21,7 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
       </template>
 
       <CodeMirror
-        :model-v="inputHTML"
+        v-model="modelV"
         mode="html"
         :readonly="false"
       />

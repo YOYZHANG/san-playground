@@ -35,10 +35,15 @@ export function useCodeMirror(
     doc: input.value,
     parent: parent.value as Element,
     extensions: extensions.value,
+    dispatch(tr) {
+      cm.update([tr])
+
+      if (tr.docChanged)
+        input.value = cm.state.doc.toString()
+    },
   })
 
   watch(input, (val) => {
-    console.log('codemirror val change')
     if (val !== cm.state.doc.toString()) {
       cm.dispatch({
         changes: {

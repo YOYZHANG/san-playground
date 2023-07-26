@@ -14,7 +14,7 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
       </template>
 
       <CodeMirror
-        :model-v="css"
+        v-model="css"
         mode="css"
         :readonly="false"
       />
