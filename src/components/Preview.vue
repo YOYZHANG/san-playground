@@ -11,6 +11,7 @@ const iframeData = reactive({
 })
 
 function send() {
+  console.log('send')
   iframe.value?.contentWindow?.postMessage(JSON.stringify(iframeData), location.origin)
 }
 
