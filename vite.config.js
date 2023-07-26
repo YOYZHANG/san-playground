@@ -6,7 +6,6 @@ import Unocss from 'unocss/vite'
 // import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
-  base: '/playground/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,

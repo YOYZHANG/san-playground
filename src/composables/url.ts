@@ -9,7 +9,7 @@ export const css = ref(decodeURIComponent(urlParams.get('css') || '') || default
 
 watchThrottled([inputHTML, css], () => {
   console.log('inputHTML change')
-  const url = new URL('/playground/', location.origin)
+  const url = new URL('/', location.origin)
 
   url.searchParams.set('html', encodeURIComponent(inputHTML.value))
   url.searchParams.set('css', encodeURIComponent(css.value))
