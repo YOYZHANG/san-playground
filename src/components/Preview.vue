@@ -26,7 +26,7 @@ watch([iframe, iframeData], send)
         ref="iframe"
         w-full
         h-screen
-        src="/_play.html"
+        src="/__play.html"
         @load="send"
       />
     </div>

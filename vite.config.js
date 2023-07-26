@@ -17,11 +17,10 @@ export default defineConfig({
     Vue(),
 
   ],
-  test: {
-    include: ['test/**/*.test.ts'],
-    environment: 'jsdom',
-    deps: {
-      inline: ['@vue', '@vueuse'],
+  build: {
+    rollupOptions: {
+      input: ['index.html', '__play.html'],
     },
+
   },
 })
