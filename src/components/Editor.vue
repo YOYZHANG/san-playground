@@ -2,12 +2,16 @@
 import { Splitpanes } from 'splitpanes'
 import { ref } from 'vue'
 
-import { panelRef } from '../composables/panel'
+import { panelRef, panelSizes } from '../composables/panel'
 import HeadBar from '../components/HeadBar.vue'
-import PanelHTML from './panel/PanelHTML.vue'
+import PanelHTML from './panel/PanelJS.vue'
 import PanelCSS from './panel/PanelCSS.vue'
 
 const _panel = ref(panelRef)
+
+function handleResize(event: { size: number }[]) {
+  event.map((e, i) => panelSizes[i] = e.size)
+}
 </script>
 
 <template>
@@ -16,6 +20,7 @@ const _panel = ref(panelRef)
     ref="_panel"
     horizontal
     w-full h-full
+    @resize="handleResize"
   >
     <PanelHTML />
     <PanelCSS />

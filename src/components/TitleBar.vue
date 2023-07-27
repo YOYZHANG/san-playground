@@ -10,7 +10,7 @@ const emit = defineEmits(['titleClick'])
 
 <template>
   <div relative w-full all:my-auto>
-    <div bg-light flex p-1 @click="e => emit('titleClick', e)">
+    <div bg-light flex p-1 border-b-1 @click="e => emit('titleClick', e)">
       <slot name="collapse" />
       <div c-blueGray>
         {{ title }}

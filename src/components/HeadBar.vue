@@ -12,7 +12,7 @@
       </p>
     </div>
     <div flex-nowrap ml-auto font-700>
-      <button i-carbon-search />
+      <a i-carbon-search href="https://baidu.github.io/san/" icon-btn />
     </div>
   </div>
 </template>

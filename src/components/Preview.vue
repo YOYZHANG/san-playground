@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
-import { init } from '../composables/san'
-import { css, inputHTML } from '../composables/url'
+import { css, inputJS } from '../composables/url'
 
 const iframe = ref<HTMLIFrameElement>()
 const iframeData = reactive({
   source: 'playground',
   css,
-  html: inputHTML,
+  js: inputJS,
 })
 
 function send() {
-  console.log('send')
   iframe.value?.contentWindow?.postMessage(JSON.stringify(iframeData), location.origin)
 }
 
@@ -22,7 +20,6 @@ watch([iframe, iframeData], send)
   <div w-full h-full relative b-1 flex-1>
     <div>
       <iframe
-        v-show="init"
         ref="iframe"
         w-full
         h-screen

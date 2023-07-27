@@ -10,26 +10,42 @@
     height: 100%;
   }
 </style>
-<body>
-  <div id="container"></div>
-  <style id="style"></style>
-</body>
+<style id="style"></style>
+<body></body>
+<script src="https://unpkg.com/san@latest/dist/san.dev.js"></script>
 <script type="module">
-  const container = document.getElementById('container')
   const style = document.getElementById('style')
+  const scriptsEl = []
 
-  window.addEventListener('message', ({ data }) => {
+window.addEventListener('message', ({ data }) => {
     try {
       const payload = JSON.parse(data)
 
       if (payload.source !== 'playground')
         return
   
-      container.innerHTML = payload.html
       style.innerHTML = payload.css
+
+      if (payload.js) {
+        scriptsEl.forEach((el) => {
+          document.head.removeChild(el)
+        })
+  
+        scriptsEl.length = 0
+        document.body.innerHTML = ''
+
+        const newEl = document.createElement('script')
+        newEl.setAttribute('type', 'module')
+
+        newEl.innerHTML = `${payload.js}`
+
+        document.head.appendChild(newEl)
+  
+        scriptsEl.push(newEl)
+      }
     }
     catch (e) {
       console.error(e)
     }
-  })
+})
 </script>

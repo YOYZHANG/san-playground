@@ -4,6 +4,7 @@ import App from './App.vue'
 
 import './styles/main.css'
 import '@unocss/reset/tailwind.css'
+import 'splitpanes/dist/splitpanes.css'
 import 'uno.css'
 
 const pinia = createPinia()

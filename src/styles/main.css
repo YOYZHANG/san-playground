@@ -9,3 +9,17 @@ body,
 .splitpanes .splitpanes--horizontal .splitpanes__pane {
   transition: height .2s ease-out;
 }
+
+.splitpanes--vertical .splitpanes__splitter {
+  transition: opacity .3s ease-out;
+}
+
+.splitpanes--vertical .splitpanes__splitter {
+  opacity: 10%;
+  border-width: 3px;
+  border-color: #f0f0f0;
+}
+
+.splitpanes--vertical .splitpanes__splitter:hover {
+  opacity: 100;
+}

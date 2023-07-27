@@ -4,12 +4,17 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  presetWebFonts,
 } from 'unocss'
 
 export default defineConfig({
+  theme: {
+    fontFamily: {
+      sans: '\'Inter\', sans-serif',
+      mono: '\'Fira Code\', monospace',
+    },
+  },
   shortcuts: [
-    ['btn', 'inline-block'],
+    ['icon-btn', 'text-xl op75 hover:op100 w-5 h-5 inline-block'],
   ],
   presets: [
     presetUno(),
@@ -19,12 +24,5 @@ export default defineConfig({
       warn: true,
     }),
     presetTypography(),
-    presetWebFonts({
-      fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-      },
-    }),
   ],
 })
