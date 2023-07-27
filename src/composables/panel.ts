@@ -27,9 +27,30 @@ export function toggle(index: number) {
     panelSizes[index] = 100 / panelSizes.length
   else
     panelSizes[index] = panelMinHeightPercent.value
+
+  normalize()
 }
 
-// export function normalize() {
-//   const collapsedNum = 0
-//   const normalNum = 0
-// }
+export function normalize() {
+  let collapsedNum = 0
+  let normalNum = 0
+  const collapsedIndex: number[] = []
+
+  panelSizes.forEach((size, i) => {
+    if (size <= panelMinHeightPercent.value) {
+      collapsedNum++
+      collapsedIndex.push(i)
+    }
+    else { normalNum++ }
+  })
+
+  let normalSize = 50
+
+  if (normalNum)
+    normalSize = (94 - collapsedNum * panelMinHeightPercent.value) / normalNum
+
+  panelSizes.forEach((_, idx) => {
+    if (!collapsedIndex.includes(idx))
+      panelSizes[idx] = normalSize
+  })
+}
