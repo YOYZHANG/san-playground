@@ -14,7 +14,7 @@ const modelV = ref(inputJS)
 </script>
 
 <template>
-  <Pane w-full relative :min-size="panelMinHeightPercent" :size="panelSizes[0]" bg-light overflow-hidden b-1>
+  <Pane w-full relative :min-size="panelMinHeightPercent" :size="panelSizes[0]" bg-light overflow-auto b-1>
     <TitleBar title="js" @title-click="toggle(0)">
       <template #collapse>
         <div i-carbon-chevron-right c-blueGray :class="isCollapsed(0) ? '' : 'rotate-90'" />

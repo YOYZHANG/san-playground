@@ -6,7 +6,7 @@ import type { Extension } from '@codemirror/state'
 import { EditorState } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
 import { css } from '@codemirror/lang-css'
-import { vitesse } from './theme'
+import { vitesse } from '../theme'
 
 const langExtensions: Record<string, () => object> = {
   html: () => htmlLanguage.extension,

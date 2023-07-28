@@ -19,6 +19,7 @@
     "@codemirror/language": "^6.8.0",
     "@codemirror/state": "^6.2.1",
     "@lezer/highlight": "^1.1.6",
+    "@types/codemirror": "^5.60.8",
     "@unocss/reset": "^0.53.0",
     "@vueuse/core": "^10.1.2",
     "codemirror": "^6.0.1",

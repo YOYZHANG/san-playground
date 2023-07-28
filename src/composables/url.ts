@@ -7,8 +7,6 @@ const urlParams = new URLSearchParams(location.search || localStorage.getItem(ST
 export const inputJS = ref(decodeURIComponent(urlParams.get('js') || '') || defaultJS)
 export const css = ref(decodeURIComponent(urlParams.get('css') || '') || defaultCss)
 
-console.log(inputJS.value, 'inputJS')
-
 watchThrottled([inputJS, css], () => {
   const url = new URL('/', location.origin)
 

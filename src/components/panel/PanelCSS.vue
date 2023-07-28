@@ -7,7 +7,7 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
 </script>
 
 <template>
-  <Pane w-full h-full :min-size="panelMinHeightPercent" :size="panelSizes[1]" bg-light overflow-hidden b-1>
+  <Pane w-full h-full :min-size="panelMinHeightPercent" :size="panelSizes[1]" bg-light overflow-auto b-1>
     <TitleBar title="css" @title-click="toggle(1)">
       <template #collapse>
         <div i-carbon-chevron-right c-blueGray :class="isCollapsed(1) ? '' : 'rotate-90'" />
