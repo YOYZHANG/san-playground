@@ -17,7 +17,34 @@
   const style = document.getElementById('style')
   const scriptsEl = []
 
-window.addEventListener('message', ({ data }) => {
+  window.addEventListener('message', async (env) => {
+    const { action, data, cmdId } = env.data
+
+    const sendMessage = (payload) => {
+      parent.postMessage({ ...payload }, env.origin)
+    }
+    const sendReply = payload => sendMessage({ ...payload, cmdId })
+
+    const reply = {
+      ok: () => sendReply({ action: 'ok', cmdId }),
+      error: (message, stack) => sendReply({ action: 'error', message, stack, cmdId }),
+      console: (level, message) => sendReply({ action: 'console', level, cmdId, message }),
+      unhandledRejection: (message, stack) => sendReply({ action: 'unhandledRejection', cmdId, message, stack }),
+    }
+
+    const consoleLevels = ['error', 'warn']
+
+    consoleLevels.forEach((level) => {
+      // eslint-disable-next-line no-console
+      const origin = console[level]
+  
+      console[level] = (...args) => {
+        origin(...args)
+
+        reply.console(level, args[0])
+      }
+    })
+
     try {
       const payload = JSON.parse(data)
 
@@ -37,15 +64,30 @@ window.addEventListener('message', ({ data }) => {
         const newEl = document.createElement('script')
         newEl.setAttribute('type', 'module')
 
-        newEl.innerHTML = `${payload.js}`
+        const done = new Promise((resolve, reject) => {
+          window._next = resolve
+        })
+
+        newEl.innerHTML = `${payload.js};window._next()`
 
         document.head.appendChild(newEl)
+
+        newEl.onerror = e => reply.error(e.message, e.stack)
+
+        await done
+
+        reply.ok()
   
         scriptsEl.push(newEl)
       }
     }
     catch (e) {
       console.error(e)
+      // reply.error(e.message, e.stack)
     }
+
+    window.addEventListener('unhandledrejection', (e) => {
+      reply.unhandledRejection(e.message, e.stack)
+    })
 })
 </script>

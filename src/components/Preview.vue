@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { css, inputJS } from '../composables/url'
+import { createSandboxProxy, runtimeWarn } from '../composables/ifame'
+import Message from './Message.vue'
 
 const iframe = ref<HTMLIFrameElement>()
 const iframeData = reactive({
@@ -9,11 +11,13 @@ const iframeData = reactive({
   js: inputJS,
 })
 
-function send() {
-  iframe.value?.contentWindow?.postMessage(JSON.stringify(iframeData), location.origin)
+const iframeProxy = createSandboxProxy(iframe)
+
+async function send() {
+  return await iframeProxy.send('updateContent', JSON.stringify(iframeData))
 }
 
-watch([iframe, iframeData], send)
+watch([iframeData], send)
 </script>
 
 <template>
@@ -27,5 +31,7 @@ watch([iframe, iframeData], send)
         @load="send"
       />
     </div>
+    <!-- <Message :message="runtimeError" type="err" /> -->
+    <Message :message="runtimeWarn" type="warn" />
   </div>
 </template>

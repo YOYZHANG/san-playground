@@ -1,8 +1,6 @@
 import { EditorView } from 'codemirror'
 import type { Extension } from '@codemirror/state'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags as t } from '@lezer/highlight'
 
