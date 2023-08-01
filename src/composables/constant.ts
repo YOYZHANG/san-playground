@@ -1,4 +1,5 @@
 export const defaultJS = `
+import san from 'san'
 class Input extends san.Component {
   static template = \`
       <div>
@@ -20,14 +21,14 @@ class Header extends san.Component {
 class MyApp extends san.Component {
   static template = \`
       <div class="container">
-          <header />
+          <my-header />
           <my-input /> 
       </div>
   \`;
 
   static components = {
       'my-input': Input,
-      'header': Header
+      'my-header': Header
   };
 }
 

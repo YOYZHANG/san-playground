@@ -1,9 +1,9 @@
 import type { Ref } from 'vue'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 let uid = 0
-export const runtimeError = reactive<string[]>([])
-export const runtimeWarn = reactive<string[]>([])
+export const runtimeError = ref('')
+export const runtimeWarn = ref('')
 
 class SandBoxProxy {
   private pendingActionMap: Map<number, { resolve: (value: unknown) => void; reject: any }> = new Map()
@@ -51,41 +51,34 @@ class SandBoxProxy {
     level?: 'error' | 'warn'
   }) {
     const { cmdId, action } = args
-    const pendingP = this.pendingActionMap.get(cmdId)
-
-    if (!pendingP) {
-      console.error('command not find', cmdId, action)
-      return
-    }
-
-    const { resolve, reject } = pendingP
 
     if (action === 'ok') {
-      resolve(args)
-      this.pendingActionMap.delete(cmdId)
+      const pendingP = this.pendingActionMap.get(cmdId)
+
+      if (pendingP) {
+        const { resolve } = pendingP
+        resolve(args)
+        this.pendingActionMap.delete(cmdId)
+      }
     }
     else if (action === 'error') {
-      const { message, stack } = args as { message: string; stack: string }
+      const { message } = args as { message: string; stack: string }
 
-      runtimeError.push(`[San Error]: ${message}; stack: ${stack}`)
-      reject(args)
-      this.pendingActionMap.delete(cmdId)
+      runtimeError.value = `[San Error]: ${message};`
     }
     else if (action === 'unhandledRejection') {
-      const { message, stack } = args as { message: string; stack: string }
+      const { message } = args as { message: string; stack: string }
 
-      runtimeError.push(`[UnhandledRejection San Error]: ${message}; stack: ${stack}`)
-      reject(args)
-      this.pendingActionMap.delete(cmdId)
+      runtimeError.value = `[UnhandledRejection San Error]: ${message}`
     }
     else if (action === 'console') {
       const { level, message } = args
 
       if (level === 'error')
-        runtimeError.push(message!)
+        runtimeError.value = message || ''
 
       else if (level === 'warn')
-        runtimeWarn.push(message!)
+        runtimeWarn.value = message || ''
     }
   }
 }

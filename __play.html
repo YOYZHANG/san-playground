@@ -12,7 +12,9 @@
 </style>
 <style id="style"></style>
 <body></body>
-<script src="https://unpkg.com/san@latest/dist/san.dev.js"></script>
+<script type="importmap">
+  {"imports":{"san":"./san.dev.js"}}
+  </script>
 <script type="module">
   const style = document.getElementById('style')
   const scriptsEl = []
@@ -28,22 +30,7 @@
     const reply = {
       ok: () => sendReply({ action: 'ok', cmdId }),
       error: (message, stack) => sendReply({ action: 'error', message, stack, cmdId }),
-      console: (level, message) => sendReply({ action: 'console', level, cmdId, message }),
-      unhandledRejection: (message, stack) => sendReply({ action: 'unhandledRejection', cmdId, message, stack }),
     }
-
-    const consoleLevels = ['error', 'warn']
-
-    consoleLevels.forEach((level) => {
-      // eslint-disable-next-line no-console
-      const origin = console[level]
-  
-      console[level] = (...args) => {
-        origin(...args)
-
-        reply.console(level, args[0])
-      }
-    })
 
     try {
       const payload = JSON.parse(data)
@@ -72,7 +59,9 @@
 
         document.head.appendChild(newEl)
 
-        newEl.onerror = e => reply.error(e.message, e.stack)
+        newEl.onerror = (e) => {
+          reply.error(e.message, e.stack)
+        }
 
         await done
 
@@ -85,9 +74,25 @@
       console.error(e)
       // reply.error(e.message, e.stack)
     }
-
-    window.addEventListener('unhandledrejection', (e) => {
-      reply.unhandledRejection(e.message, e.stack)
-    })
 })
+
+  window.onerror = function (msg, url, lineNo, columnNo, error) {
+    parent.postMessage({ action: 'error', message: error.message, stack: error.stack }, '*')
+  }
+
+  window.addEventListener('unhandledrejection', (e) => {
+    parent.postMessage({ action: 'unhandledRejection', message: e.message }, '*')
+  })
+
+  const consoleLevels = ['error', 'warn']
+  consoleLevels.forEach((level) => {
+    // eslint-disable-next-line no-console
+    const origin = console[level]
+  
+    console[level] = (...args) => {
+      origin(...args)
+
+      parent.postMessage({ action: 'console', level, message: args[0] }, '*')
+    }
+  })
 </script>
