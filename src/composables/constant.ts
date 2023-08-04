@@ -1,5 +1,6 @@
 export const defaultJS = `
-import san from 'san'
+import san from 'san';
+
 class Input extends san.Component {
   static template = \`
       <div>

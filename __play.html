@@ -13,86 +13,86 @@
 <style id="style"></style>
 <body></body>
 <script type="importmap">
-  {"imports":{"san":"./san.dev.js"}}
-  </script>
+  {"imports":{"san":"https://unpkg.com/es-san@1.0.1/dist/3.13/san.dev.js"}}
+</script>
 <script type="module">
-  const style = document.getElementById('style')
-  const scriptsEl = []
+const style = document.getElementById('style')
+const scriptsEl = []
 
-  window.addEventListener('message', async (env) => {
-    const { action, data, cmdId } = env.data
+window.addEventListener('message', async (env) => {
+  const { action, data, cmdId } = env.data
 
-    const sendMessage = (payload) => {
-      parent.postMessage({ ...payload }, env.origin)
-    }
-    const sendReply = payload => sendMessage({ ...payload, cmdId })
+  const sendMessage = (payload) => {
+    parent.postMessage({ ...payload }, env.origin)
+  }
+  const sendReply = payload => sendMessage({ ...payload, cmdId })
 
-    const reply = {
-      ok: () => sendReply({ action: 'ok', cmdId }),
-      error: (message, stack) => sendReply({ action: 'error', message, stack, cmdId }),
-    }
-
-    try {
-      const payload = JSON.parse(data)
-
-      if (payload.source !== 'playground')
-        return
-  
-      style.innerHTML = payload.css
-
-      if (payload.js) {
-        scriptsEl.forEach((el) => {
-          document.head.removeChild(el)
-        })
-  
-        scriptsEl.length = 0
-        document.body.innerHTML = ''
-
-        const newEl = document.createElement('script')
-        newEl.setAttribute('type', 'module')
-
-        const done = new Promise((resolve, reject) => {
-          window._next = resolve
-        })
-
-        newEl.innerHTML = `${payload.js};window._next()`
-
-        document.head.appendChild(newEl)
-
-        newEl.onerror = (e) => {
-          reply.error(e.message, e.stack)
-        }
-
-        await done
-
-        reply.ok()
-  
-        scriptsEl.push(newEl)
-      }
-    }
-    catch (e) {
-      console.error(e)
-      // reply.error(e.message, e.stack)
-    }
-})
-
-  window.onerror = function (msg, url, lineNo, columnNo, error) {
-    parent.postMessage({ action: 'error', message: error.message, stack: error.stack }, '*')
+  const reply = {
+    ok: () => sendReply({ action: 'ok', cmdId }),
+    error: (message, stack) => sendReply({ action: 'error', message, stack, cmdId }),
   }
 
-  window.addEventListener('unhandledrejection', (e) => {
-    parent.postMessage({ action: 'unhandledRejection', message: e.message }, '*')
-  })
+  try {
+    const payload = JSON.parse(data)
 
-  const consoleLevels = ['error', 'warn']
-  consoleLevels.forEach((level) => {
-    // eslint-disable-next-line no-console
-    const origin = console[level]
-  
-    console[level] = (...args) => {
-      origin(...args)
+    if (payload.source !== 'playground')
+      return
 
-      parent.postMessage({ action: 'console', level, message: args[0] }, '*')
+    style.innerHTML = payload.css
+
+    if (payload.js) {
+      scriptsEl.forEach((el) => {
+        document.head.removeChild(el)
+      })
+
+      scriptsEl.length = 0
+      document.body.innerHTML = ''
+
+      const newEl = document.createElement('script')
+      newEl.setAttribute('type', 'module')
+
+      const done = new Promise((resolve, reject) => {
+        window._next = resolve
+      })
+
+      newEl.innerHTML = `${payload.js};window._next()`
+
+      document.head.appendChild(newEl)
+
+      newEl.onerror = (e) => {
+        reply.error(e.message, e.stack)
+      }
+
+      await done
+
+      reply.ok()
+
+      scriptsEl.push(newEl)
     }
-  })
+  }
+  catch (e) {
+    console.error(e)
+    // reply.error(e.message, e.stack)
+  }
+})
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+  parent.postMessage({ action: 'error', message: error.message, stack: error.stack }, '*')
+}
+
+window.addEventListener('unhandledrejection', (e) => {
+  parent.postMessage({ action: 'unhandledRejection', message: e.message }, '*')
+})
+
+const consoleLevels = ['error', 'warn']
+consoleLevels.forEach((level) => {
+  // eslint-disable-next-line no-console
+  const origin = console[level]
+
+  console[level] = (...args) => {
+    origin(...args)
+
+    parent.postMessage({ action: 'console', level, message: args[0] }, '*')
+  }
+})
 </script>

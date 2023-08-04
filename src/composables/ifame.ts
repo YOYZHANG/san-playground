@@ -64,7 +64,7 @@ class SandBoxProxy {
     else if (action === 'error') {
       const { message } = args as { message: string; stack: string }
 
-      runtimeError.value = `[San Error]: ${message};`
+      runtimeError.value = `${message};`
     }
     else if (action === 'unhandledRejection') {
       const { message } = args as { message: string; stack: string }
