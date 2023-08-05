@@ -20,7 +20,11 @@ const modelV = ref(inputJS)
       <TitleBar title="js" @title-click="toggle(0)">
         <template #collapse>
           <div flex flex-wrap>
-            <div i-carbon-chevron-right c-blueGray :class="isCollapsed(0) ? '' : 'rotate-90'" />
+            <div
+              i-ri-arrow-drop-right-line
+              c-blueGray cursor-pointer
+              :class="isCollapsed(0) ? '' : 'rotate-90'"
+            />
             <div c-blueGray>
               js
             </div>

@@ -1,7 +1,7 @@
 import { EditorView, basicSetup } from 'codemirror'
 import { htmlLanguage } from '@codemirror/lang-html'
 import type { Ref, WritableComputedRef } from 'vue'
-import { computed, ref, watch } from 'vue'
+import { computed, watch } from 'vue'
 import type { Extension } from '@codemirror/state'
 import { EditorState } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
@@ -16,8 +16,6 @@ const langExtensions: Record<string, () => object> = {
   jsx: () => javascript({ jsx: true }),
   css,
 }
-
-export const init = ref<Boolean>(false)
 
 export function useCodeMirror(
   input: Ref<string> | WritableComputedRef<string>,
@@ -57,7 +55,6 @@ export function useCodeMirror(
         },
       })
     }
-    init.value = true
   }, { immediate: true })
 
   return cm
