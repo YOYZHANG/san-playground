@@ -14,7 +14,7 @@ export default defineConfig({
     },
   },
   shortcuts: [
-    ['icon-btn', 'text-xl op75 hover:op100 w-5 h-5 inline-block'],
+    ['icon-btn', 'text-xl op75 hover:op100 w-5 h-5 inline-block pl'],
   ],
   presets: [
     presetUno(),

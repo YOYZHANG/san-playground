@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { reactive, ref, watchEffect } from 'vue'
-import { css, inputJS } from '../composables/url'
+import { inputCss, inputJS } from '../composables/url'
 import { createSandboxProxy, runtimeError, runtimeWarn } from '../composables/ifame'
 import Message from './Message.vue'
 
 const iframe = ref<HTMLIFrameElement>()
 const iframeData = reactive({
   source: 'playground',
-  css,
+  css: inputCss,
   js: inputJS,
 })
 

@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import pluginCss from 'prettier/plugins/postcss'
 import pluginEstree from 'prettier/plugins/estree'
 import pluginBabel from 'prettier/plugins/babel'
-import { css, inputJS } from './url'
+import { inputCss, inputJS } from './url'
 
 function usePrettify(content: Ref<string>, type: 'babel' | 'css') {
   const plugins = {
@@ -26,6 +26,6 @@ export async function formatJS() {
 }
 
 export async function formatCSS() {
-  const val = await usePrettify(css, 'css').value
-  css.value = val
+  const val = await usePrettify(inputCss, 'css').value
+  inputCss.value = val
 }
