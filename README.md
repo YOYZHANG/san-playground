@@ -23,7 +23,7 @@ npm run dev
 
 # Todo
 <form>
-  <input type="checkbox" name="option1">
+  <input type="checkbox" name="option1" checked>
   <label for="option1">add reactive layout</label><br>
   <input type="checkbox" name="option2" checked>
   <label for="option2">add error hint</label><br>
