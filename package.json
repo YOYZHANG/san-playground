@@ -22,12 +22,13 @@
     "@types/codemirror": "^5.60.8",
     "@unocss/reset": "^0.53.0",
     "@vueuse/core": "^10.1.2",
+    "babel": "link:prettier/plugins/babel",
     "codemirror": "^6.0.1",
-    "pinia": "^2.1.3",
-    "san": "^3.13.1",
+    "estree": "link:prettier/plugins/estree",
+    "postcss": "link:prettier/plugins/postcss",
+    "prettier": "^3.0.1",
     "splitpanes": "^3.1.5",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.4",

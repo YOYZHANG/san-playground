@@ -3,6 +3,7 @@ import { Pane } from 'splitpanes'
 import CodeMirror from '../CodeMirror.vue'
 import TitleBar from '../TitleBar.vue'
 import { css } from '../../composables/url'
+import { formatCSS } from '../../composables/prettier'
 import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../composables/panel'
 </script>
 
@@ -11,13 +12,18 @@ import { isCollapsed, panelMinHeightPercent, panelSizes, toggle } from '../../co
     <TitleBar title="css" @title-click="toggle(1)">
       <template #collapse>
         <div i-carbon-chevron-right c-blueGray :class="isCollapsed(1) ? '' : 'rotate-90'" />
+        <div c-blueGray>
+          css
+        </div>
       </template>
-
-      <CodeMirror
-        v-model="css"
-        mode="css"
-        :readonly="false"
-      />
+      <div flex justify-end cursor-pointer>
+        <div v-show="!isCollapsed(1)" i-carbon-text-align-center c-blueGray @click="formatCSS" />
+      </div>
     </TitleBar>
+    <CodeMirror
+      v-model="css"
+      mode="css"
+      :readonly="false"
+    />
   </Pane>
 </template>

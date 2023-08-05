@@ -22,10 +22,17 @@ npm run dev
 ```
 
 # Todo
-- add reactive layout
-- add error hint
-- add prettier
-- optimize theme
+<form>
+  <input type="checkbox" name="option1">
+  <label for="option1">add reactive layout</label><br>
+  <input type="checkbox" name="option2" checked>
+  <label for="option2">add error hint</label><br>
+  <input type="checkbox" name="option3" checked>
+  <label for="option3">add prettier</label><br>
+  <input type="checkbox" name="option3">
+  <label for="option3">optimize theme</label>
+</form>
+
 
 <br>
 

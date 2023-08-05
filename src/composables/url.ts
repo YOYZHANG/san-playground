@@ -14,4 +14,6 @@ watchThrottled([inputJS, css], () => {
   url.searchParams.set('css', encodeURIComponent(css.value))
 
   localStorage.setItem(STORAGE_KEY, url.search)
+
+  window.history.replaceState('', '', `${url.pathname}${url.search}`)
 }, { deep: true, throttle: 1000 })

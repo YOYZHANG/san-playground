@@ -41,27 +41,28 @@ myApp.attach(document.body);
 export const defaultCss = `
 .container {
   text-align: center;
-  padding: 4rem 10rem;
+  padding: 10rem 10rem;
   color: #6a6868;
   font-family: monospace;
+  font-size: 40px;
 }
 
 input {
-display: block;
-outline: none;
-width: 200px;
-height: 35px;
-text-align: center;
-border: 1px solid #f0f0f0;
-border-radius: 0.1rem;
-background: transparent;
-padding:0;
-margin:auto;
+  display: block;
+  outline: none;
+  width: 200px;
+  height: 35px;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  border-radius: 0.1rem;
+  background: transparent;
+  padding:0;
+  margin:auto;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
 }
 
 .title {
@@ -72,13 +73,15 @@ margin:auto;
 
 .detail {
   color:#b9b7b7;
-  font-size: small;
+  font-size: 20px;
   padding-bottom: 2rem;
 }
 
 .content {
   margin-top: 1rem;
+  font-size: 20px;
 }
+
 `
 
 export const STORAGE_KEY = 'last_search'
