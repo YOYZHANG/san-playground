@@ -17,7 +17,7 @@ body,
 .splitpanes--vertical .splitpanes__splitter {
   opacity: 10%;
   border-width: 3px;
-  border-color: #f0f0f0;
+  border-color: #bbb;
 }
 
 .splitpanes--vertical .splitpanes__splitter:hover {

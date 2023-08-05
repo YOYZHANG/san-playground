@@ -100,12 +100,12 @@ export const vitesseTheme = EditorView.theme({
       color: '#c2beb3',
     },
   },
-}, { dark: true })
+}, { dark: false })
 
 export const vitesseHighlightStyle = HighlightStyle.define([
   {
     tag: [t.variableName, t.regexp],
-    color: 'var(--cm-decorator)',
+    color: '#bd976a',
   },
   {
     tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName],

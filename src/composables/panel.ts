@@ -34,11 +34,13 @@ export function toggle(index: number) {
 export function normalize() {
   let collapsedNum = 0
   let normalNum = 0
+  let collapaseHeight = 0
   const collapsedIndex: number[] = []
 
   panelSizes.forEach((size, i) => {
     if (size <= panelMinHeightPercent.value) {
       collapsedNum++
+      collapaseHeight += size
       collapsedIndex.push(i)
     }
     else { normalNum++ }
@@ -47,7 +49,7 @@ export function normalize() {
   let normalSize = 50
 
   if (normalNum)
-    normalSize = (94 - collapsedNum * panelMinHeightPercent.value) / normalNum
+    normalSize = (95 - collapaseHeight) / normalNum
 
   panelSizes.forEach((_, idx) => {
     if (!collapsedIndex.includes(idx))

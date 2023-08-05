@@ -15,7 +15,7 @@ function handleResize(event: { size: number }[]) {
 </script>
 
 <template>
-  <HeadBar h-10 />
+  <HeadBar />
   <Splitpanes
     ref="_panel"
     horizontal

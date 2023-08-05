@@ -22,7 +22,7 @@ watch(() => [props.err, props.warn], () => {
       <div v-show="warn && !err" c-orange-3 bg-orange-100 border-orange-400 rd p-4>
         {{ warn }}
       </div>
-      <div absolute top-1 right-1 i-carbon-close-outline :class="err ? 'c-red-6' : 'c-orange-4'" p-3 @click="e => dismissed = true">
+      <div absolute top-1 right-1 i-carbon-close-outline :class="err ? 'c-red-6' : 'c-orange-4'" p-3 cursor-pointer @click="e => dismissed = true">
         x
       </div>
     </div>
