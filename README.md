@@ -10,9 +10,9 @@ An online code Editor for San, A fast, lightweight, and flexible JavaScript comp
 
 <br>
 
-<blockquote align="center">
-<p> 😄 now try it! - <a href="https://playground.zhangxiaoqian.me"><strong>San Playground</strong></a>
-</blockquote>
+<p align="center">
+ 😄  NOW TRY IT! - <a href="https://playground.zhangxiaoqian.me"><strong>SAN PLAYGROUND</strong></a>
+</p>
 
 <br>
 
@@ -20,19 +20,6 @@ An online code Editor for San, A fast, lightweight, and flexible JavaScript comp
 ```
 npm run dev
 ```
-
-# Todo
-<form>
-  <input type="checkbox" name="option1" checked>
-  <label for="option1">add reactive layout</label><br>
-  <input type="checkbox" name="option2" checked>
-  <label for="option2">add error hint</label><br>
-  <input type="checkbox" name="option3" checked>
-  <label for="option3">add prettier</label><br>
-  <input type="checkbox" name="option3">
-  <label for="option3">optimize theme</label>
-</form>
-
 
 <br>
 
