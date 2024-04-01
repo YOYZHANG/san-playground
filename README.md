@@ -18,7 +18,7 @@ An online code Editor for San, A fast, lightweight, and flexible JavaScript comp
 
 # preview
 <p align="center">
-<img width="100%" src="https://playground.zhangxiaoqian.me/san.png"/>
+<img width="100%" src="https://github.com/YOYZHANG/san-playground/blob/master/public/san.png"/>
 </p>
 
 
