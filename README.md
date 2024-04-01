@@ -16,6 +16,12 @@ An online code Editor for San, A fast, lightweight, and flexible JavaScript comp
 
 <br>
 
+# preview
+<p align="center">
+<img width="100%" src="https://playground.zhangxiaoqian.me/san.png"/>
+</p>
+
+
 # install
 ```
 npm run dev
