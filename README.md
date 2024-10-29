@@ -10,10 +10,6 @@ An online code Editor for San, A fast, lightweight, and flexible JavaScript comp
 
 <br>
 
-<p align="center">
- 😄  NOW TRY IT! - <a href="https://playground.zhangxiaoqian.me"><strong>SAN PLAYGROUND</strong></a>
-</p>
-
 <br>
 
 # preview
